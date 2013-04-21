@@ -17,7 +17,7 @@ class Aliens:
         self.ypos = 0
 
     def Move(self):
-        if self.xpos < WIN_HEIGHT - 70:
+        if self.xpos < WIN_LARGEUR - 70:
             self.xpos += self.speed
         else:
             self.xpos = 0

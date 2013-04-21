@@ -12,7 +12,7 @@ from aliens import *
 from screen import *
 
 pygame.init()
-screen = pygame.display.set_mode((WIN_HEIGHT, WIN_WIDTH)) 
+screen = pygame.display.set_mode((WIN_HAUTEUR, WIN_LARGEUR)) 
 
 pygame.display.set_caption('Space nain d\'vader') 
 
@@ -26,13 +26,10 @@ def uptade():
     if player.missile.fired:
       screen.blit(player.missile.missile, (player.missile.xpos, player.missile.ypos))
       
-    screen.blit(player.ship, (player.xpos, WIN_WIDTH - 70))
+    screen.blit(player.ship, (player.xpos, WIN_LARGEUR - 70))
     screen.blit(alien.ship, (alien.xpos, alien.ypos))
     pygame.display.flip()
 
-
-
-  
 
 def main():
   while 1:                      # Boucle infinie d'evenement.

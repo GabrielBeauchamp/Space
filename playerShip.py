@@ -16,11 +16,11 @@ class PlayerShip:
     self.ship = pygame.image.load('data/1.png').convert()
     self.speed = speed
     self.missile = Missile('p', 5)
-    
+    self.missile.SetYpos(530)
     
   def Move(self, dir):
     if dir == 'r':
-      if self.xpos < WIN_HEIGHT - 70: 
+      if self.xpos < WIN_LARGEUR - 70: 
         self.xpos += self.speed
     if dir == 'l':
       if self.xpos > 0:
@@ -28,4 +28,5 @@ class PlayerShip:
 
   def Fire(self):
     self.missile.SetXpos(self.xpos)
+
     self.missile.Fire()

@@ -27,8 +27,8 @@ class Missile:
 
     def Fire(self):
         self.fired = True
-        self.xpos += self.speed
-        self.ypos += self.speed
+        self.xpos -= self.speed
+        self.ypos -= self.speed
         
     def SetXpos(self, x):
         self.xpos = x
