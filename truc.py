@@ -11,17 +11,30 @@ from playerShip import *
 from aliens import *
 from screen import *
 
+pygame.init()
+screen = pygame.display.set_mode((WIN_HEIGHT, WIN_WIDTH)) 
+
+pygame.display.set_caption('Space nain d\'vader') 
+
+player = PlayerShip(5)        # Cree un joueur, avec une vitesse de 5.
+alien = Aliens()
+
+
+def uptade():
+    alien.Move()                # Un seul pour l'instant.
+    
+    if player.missile.fired:
+      screen.blit(player.missile.missile, (player.missile.xpos, player.missile.ypos))
+      
+    screen.blit(player.ship, (player.xpos, WIN_WIDTH - 70))
+    screen.blit(alien.ship, (alien.xpos, alien.ypos))
+    pygame.display.flip()
+
+
+
+  
 
 def main():
-  
-  pygame.init()
-  screen = pygame.display.set_mode((WIN_HEIGHT, WIN_WIDTH)) 
-  
-  pygame.display.set_caption('Space nain d\'vader') 
-  
-  player = PlayerShip(5)        # Cree un joueur, avec une vitesse de 5.
-  alien = Aliens()
-  
   while 1:                      # Boucle infinie d'evenement.
     screen.fill((0, 0, 0))
 
@@ -35,13 +48,8 @@ def main():
           player.Move('l')
         if event.key == K_LCTRL:
           player.Fire()
-          screen.blit(player.missile, (player.xpos + 50, WIN_WIDTH - 100))
 
-    alien.Move()                # Un seul pour l'instant.
-
-    screen.blit(player.ship, (player.xpos, WIN_WIDTH - 70))
-    screen.blit(alien.ship, (alien.xpos, alien.ypos))
-    pygame.display.flip()
+    uptade()
     
 
 if __name__ == '__main__': main()
