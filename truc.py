@@ -23,6 +23,8 @@ def main():
   alien = Aliens()
   
   while 1:                      # Boucle infinie d'evenement.
+    screen.fill((0, 0, 0))
+
     for event in pygame.event.get(): # Prend l'input
       if event.type == QUIT:         # Si on quitte.
         return
@@ -33,10 +35,10 @@ def main():
           player.Move('l')
         if event.key == K_LCTRL:
           player.Fire()
-          
+          screen.blit(player.missile, (player.xpos + 50, WIN_WIDTH - 100))
+
     alien.Move()                # Un seul pour l'instant.
 
-    screen.fill((0, 0, 0))
     screen.blit(player.ship, (player.xpos, WIN_WIDTH - 70))
     screen.blit(alien.ship, (alien.xpos, alien.ypos))
     pygame.display.flip()
