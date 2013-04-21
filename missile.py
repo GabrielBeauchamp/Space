@@ -5,6 +5,7 @@ import math
 import os
 import getopt
 import pygame
+
 from pygame.locals import *
 from screen import *
 from playerShip import *
@@ -30,6 +31,9 @@ class Missile:
         self.xpos -= self.speed
         self.ypos -= self.speed
         
+    def Move(self):
+        self.SetYpos(self.ypos - self.speed)
+
     def SetXpos(self, x):
         self.xpos = x
 
