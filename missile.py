@@ -15,11 +15,12 @@ class Missile:
     def __init__(self, who, speed):
         self.fired = False
         self.xpos = 0
-        self.ypos = 0
+        #self.ypos = 0
         
         if who == 'p':
             self.missile = pygame.image.load('data/pMissile.jpg').convert()
             self.speed = speed
+            self.ypos = 530
         elif who == 'a':
             #Prend le missile alien
             #self.missile = pygame.image.load
@@ -28,12 +29,16 @@ class Missile:
 
     def Fire(self):
         self.fired = True
-        self.xpos -= self.speed
-        self.ypos -= self.speed
         
-    def Move(self):
-        self.SetYpos(self.ypos - self.speed)
-
+        
+    def Move(self, who):
+        if who == 'p':          # Player
+            self.SetYpos(self.ypos - self.speed)
+            if self.ypos == 0:
+                self.fired = False
+        elif who == 'a':        # Alien
+            self.SetYpos(self.ypos + self.speed)
+            
     def SetXpos(self, x):
         self.xpos = x
 

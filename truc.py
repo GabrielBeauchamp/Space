@@ -24,9 +24,9 @@ def uptade():
     alien.Move()                # Un seul pour l'instant.
     
     if player.missile.fired:
-        player.missile.Move()
+        player.missile.Move('p')
         screen.blit(player.missile.missile, (player.missile.xpos, player.missile.ypos))
-      
+        
     screen.blit(player.ship, (player.xpos, WIN_LARGEUR - 70))
     screen.blit(alien.ship, (alien.xpos, alien.ypos))
     pygame.display.flip()
@@ -45,7 +45,8 @@ def main():
         if event.key == K_LEFT:
           player.Move('l')
         if event.key == K_LCTRL:
-          player.Fire()
+            if not player.missile.fired:
+                player.Fire()
 
     uptade()
     
