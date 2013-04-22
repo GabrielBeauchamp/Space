@@ -15,6 +15,7 @@ class Aliens:
         self.speed = 0.2
         self.xpos = 0
         self.ypos = 0
+        self.alive = True
 
     def Move(self):
         if self.xpos < WIN_LARGEUR - 70:
@@ -25,3 +26,7 @@ class Aliens:
 
     def GetRect(self):
         return pygame.Rect(self.xpos, self.ypos, 64, 64)
+
+    def Die(self):
+        self.alive = False
+

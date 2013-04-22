@@ -24,6 +24,8 @@ def colision():
 
     if player.missile.GetRect().colliderect(alien.GetRect()):
         print "BADAM!"          # Il y a colision
+        alien.Die()
+        player.missile.setFired(False)
 
 def uptade():
     
@@ -34,8 +36,13 @@ def uptade():
         screen.blit(player.missile.missile, (player.missile.xpos, player.missile.ypos))
     
     colision()
-    screen.blit(player.ship, (player.xpos, WIN_LARGEUR - 70))
-    screen.blit(alien.ship, (alien.xpos, alien.ypos))
+    if player.alive:
+        screen.blit(player.ship, (player.xpos, WIN_LARGEUR - 70))
+    elif not player.alive:
+        player.Die()
+
+    if alien.alive:             # Si l'alien est vivant on l'affiche, sinon, bah non.
+        screen.blit(alien.ship, (alien.xpos, alien.ypos))
     pygame.display.flip()
 
 

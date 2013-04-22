@@ -28,7 +28,7 @@ class Missile:
             pass
 
     def Fire(self):
-        self.fired = True
+        self.setFired(True)
         
         
     def Move(self, who):
@@ -47,3 +47,6 @@ class Missile:
 
     def SetYpos(self, y):
         self.ypos = y
+    
+    def setFired(self, fired):
+        self.fired = fired
