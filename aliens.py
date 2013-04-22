@@ -22,3 +22,6 @@ class Aliens:
         else:
             self.xpos = 0
             self.ypos += 70
+
+    def GetRect(self):
+        return pygame.Rect(self.xpos, self.ypos, 64, 64)

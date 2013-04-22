@@ -20,13 +20,20 @@ player = PlayerShip(5)        # Cree un joueur, avec une vitesse de 5.
 alien = Aliens()
 
 
+def colision():
+
+    if player.missile.GetRect().colliderect(alien.GetRect()):
+        print "BADAM!"          # Il y a colision
+
 def uptade():
+    
     alien.Move()                # Un seul pour l'instant.
     
     if player.missile.fired:
         player.missile.Move('p')
         screen.blit(player.missile.missile, (player.missile.xpos, player.missile.ypos))
-        
+    
+    colision()
     screen.blit(player.ship, (player.xpos, WIN_LARGEUR - 70))
     screen.blit(alien.ship, (alien.xpos, alien.ypos))
     pygame.display.flip()
@@ -40,15 +47,19 @@ def main():
       if event.type == QUIT:         # Si on quitte.
         return
       if event.type == KEYDOWN: # Si une touche est appuye.
-        if event.key == K_RIGHT:
-          player.Move('r')
+        if event.key == K_RIGHT: # J'aimerais bien que j'ai pas a appuye sur gauche ou
+          player.Move('r')       # droite a chaque fois que je veux me deplacer
         if event.key == K_LEFT:
           player.Move('l')
         if event.key == K_LCTRL:
             if not player.missile.fired:
                 player.Fire()
+        if event.key == K_p:    # Pause
+            pass
+        if event.key == K_q:    # Quit
+            return
 
-    uptade()
+    uptade()                    # Screen uptade
     
 
 if __name__ == '__main__': main()

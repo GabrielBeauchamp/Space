@@ -39,6 +39,9 @@ class Missile:
         elif who == 'a':        # Alien
             self.SetYpos(self.ypos + self.speed)
             
+    def GetRect(self):
+        return pygame.Rect(self.xpos, self.ypos, 64, 64)
+
     def SetXpos(self, x):
         self.xpos = x
 
