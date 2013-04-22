@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 import sys
 import random
 import math
@@ -17,8 +17,10 @@ screen = pygame.display.set_mode((WIN_HAUTEUR, WIN_LARGEUR))
 pygame.display.set_caption('Space nain d\'vader') 
 
 player = PlayerShip(5)        # Cree un joueur, avec une vitesse de 5.
+# Je dois en faire plus d'un... mais je sais pas comment.
+# 
 alien = Aliens()
-
+score = 0
 
 def colision():
 
@@ -26,10 +28,11 @@ def colision():
         print "BADAM!"          # Il y a colision
         alien.Die()
         player.missile.setFired(False)
-
+   
+        
 def uptade():
     
-    alien.Move()                # Un seul pour l'instant.
+    alien.Move()                
     
     if player.missile.fired:
         player.missile.Move('p')
@@ -43,6 +46,8 @@ def uptade():
 
     if alien.alive:             # Si l'alien est vivant on l'affiche, sinon, bah non.
         screen.blit(alien.ship, (alien.xpos, alien.ypos))
+    
+   
     pygame.display.flip()
 
 
@@ -55,7 +60,7 @@ def main():
         return
       if event.type == KEYDOWN: # Si une touche est appuye.
         if event.key == K_RIGHT: # J'aimerais bien que j'ai pas a appuye sur gauche ou
-          player.Move('r')       # droite a chaque fois que je veux me deplacer
+            player.Move('r')     # droite a chaque fois que je veux me deplacer
         if event.key == K_LEFT:
           player.Move('l')
         if event.key == K_LCTRL:
