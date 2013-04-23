@@ -35,6 +35,8 @@ def colision():
         
 def uptade():
     
+    if player.isMoving:
+        player.Move(player.movDir)
     #alien.Move()                
     for i in alienStack:
         i.Move()
@@ -67,11 +69,14 @@ def main():
       if event.type == QUIT:         # Si on quitte.
         return
       if event.type == KEYDOWN: # Si une touche est appuye.
-          key = pygame.key.get_pressed()
-          if key[pygame.K_RIGHT]: # J'aimerais bien que j'ai pas a appuye sur gauche ou
-              player.Move('r')     # droite a chaque fois que je veux me deplacer
-          if key[pygame.K_LEFT]:
-              player.Move('l')
+          if event.key == K_RIGHT: # J'aimerais bien que j'ai pas a appuye sur gauche ou
+             # player.Move('r')     # droite a chaque fois que je veux me deplacer
+              player.isMoving = True
+              player.movDir = 'r'
+          if event.key == K_LEFT:
+              #player.Move('l')
+              player.isMoving = True
+              player.movDir = 'l'
           if event.key == K_LCTRL:
               if not player.missile.fired:
                   player.Fire()

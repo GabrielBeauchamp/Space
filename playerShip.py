@@ -17,7 +17,9 @@ class PlayerShip:
     self.speed = speed
     self.alive = True
     self.missile = Missile('p', 5)
-    
+    self.isMoving = False
+    self.movDir = ''
+
   def Move(self, dir):
     if dir == 'r':
       if self.xpos < WIN_LARGEUR - 70: 
