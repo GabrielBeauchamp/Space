@@ -20,7 +20,7 @@ class Missile:
         if who == 'p':
             self.missile = pygame.image.load('data/pMissile.jpg').convert()
             self.speed = speed
-            self.ypos = 530
+            self.ypos = WIN_LARGEUR - SPRITE_SIZE
         elif who == 'a':
             #Prend le missile alien
             #self.missile = pygame.image.load
@@ -40,7 +40,7 @@ class Missile:
             self.SetYpos(self.ypos + self.speed)
             
     def GetRect(self):
-        return pygame.Rect(self.xpos, self.ypos, 64, 64)
+        return pygame.Rect(self.xpos, self.ypos, SPRITE_SIZE, SPRITE_SIZE)
 
     def SetXpos(self, x):
         self.xpos = x

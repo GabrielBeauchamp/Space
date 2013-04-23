@@ -22,7 +22,7 @@ class PlayerShip:
 
   def Move(self, dir):
     if dir == 'r':
-      if self.xpos < WIN_LARGEUR - 70: 
+      if self.xpos < WIN_HAUTEUR - SPRITE_SIZE: 
         self.xpos += self.speed
     if dir == 'l':
       if self.xpos > 0:

@@ -18,7 +18,7 @@ class Aliens:
         self.alive = True
 
     def Move(self):
-        if self.xpos < WIN_LARGEUR - 70:
+        if self.xpos < WIN_LARGEUR - SPRITE_SIZE:
             self.xpos += self.speed
         else:
             self.xpos = 0

@@ -47,7 +47,7 @@ def uptade():
     
     colision()
     if player.alive:
-        screen.blit(player.ship, (player.xpos, WIN_LARGEUR - 70))
+        screen.blit(player.ship, (player.xpos, WIN_LARGEUR - SPRITE_SIZE))
     elif not player.alive:
         player.Die()
     
@@ -84,6 +84,14 @@ def main():
               pass
           if event.key == K_q:    # Quit
               return
+      
+      if event.type == KEYUP:
+          if event.key == K_RIGHT:
+              player.isMoving = False
+              player.movDir = ''
+          if event.key == K_LEFT:
+              player.isMoving = True
+              player.movDir = ''
 
     uptade()                    # Screen uptade
     
