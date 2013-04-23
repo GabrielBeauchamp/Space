@@ -10,11 +10,11 @@ from screen import *
 
 class Aliens:
     
-    def __init__(self):
+    def __init__(self, x, y):
         self.ship = pygame.image.load('data/4.png').convert()
         self.speed = 0.2
-        self.xpos = 0
-        self.ypos = 0
+        self.xpos = x
+        self.ypos = y
         self.alive = True
 
     def Move(self):

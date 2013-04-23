@@ -19,21 +19,26 @@ pygame.display.set_caption('Space nain d\'vader')
 player = PlayerShip(5)        # Cree un joueur, avec une vitesse de 5.
 # Je dois en faire plus d'un... mais je sais pas comment.
 # 
-alien = Aliens()
+alien = Aliens(0, 0)
+alienStack = [Aliens(0, 0), Aliens(70, 0)] # Test
 score = 0
 
 def colision():
 
-    if player.missile.GetRect().colliderect(alien.GetRect()):
-        print "BADAM!"          # Il y a colision
-        alien.Die()
-        player.missile.setFired(False)
-   
+    #if player.missile.GetRect().colliderect(alien.GetRect()):
+    #    print "BADAM!"          # MIl y a colision
+    #    alien.Die()
+    #   player.missile.setFired(False)
+    for i in alienStack:
+        if player.missile.GetRect().colliderect(i.GetRect()):
+            i.Die()
         
 def uptade():
     
-    alien.Move()                
-    
+    #alien.Move()                
+    for i in alienStack:
+        i.Move()
+
     if player.missile.fired:
         player.missile.Move('p')
         screen.blit(player.missile.missile, (player.missile.xpos, player.missile.ypos))
@@ -43,9 +48,12 @@ def uptade():
         screen.blit(player.ship, (player.xpos, WIN_LARGEUR - 70))
     elif not player.alive:
         player.Die()
-
-    if alien.alive:             # Si l'alien est vivant on l'affiche, sinon, bah non.
-        screen.blit(alien.ship, (alien.xpos, alien.ypos))
+    
+    for i in alienStack:
+        if i.alive:
+            screen.blit(i.ship, (i.xpos, i.ypos))
+    #if alien.alive:             # Si l'alien est vivant on l'affiche, sinon, bah non.
+    #   screen.blit(alien.ship, (alien.xpos, alien.ypos))
     
    
     pygame.display.flip()
