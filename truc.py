@@ -67,17 +67,18 @@ def main():
       if event.type == QUIT:         # Si on quitte.
         return
       if event.type == KEYDOWN: # Si une touche est appuye.
-        if event.key == K_RIGHT: # J'aimerais bien que j'ai pas a appuye sur gauche ou
-            player.Move('r')     # droite a chaque fois que je veux me deplacer
-        if event.key == K_LEFT:
-          player.Move('l')
-        if event.key == K_LCTRL:
-            if not player.missile.fired:
-                player.Fire()
-        if event.key == K_p:    # Pause
-            pass
-        if event.key == K_q:    # Quit
-            return
+          key = pygame.key.get_pressed()
+          if key[pygame.K_RIGHT]: # J'aimerais bien que j'ai pas a appuye sur gauche ou
+              player.Move('r')     # droite a chaque fois que je veux me deplacer
+          if key[pygame.K_LEFT]:
+              player.Move('l')
+          if event.key == K_LCTRL:
+              if not player.missile.fired:
+                  player.Fire()
+          if event.key == K_p:    # Pause
+              pass
+          if event.key == K_q:    # Quit
+              return
 
     uptade()                    # Screen uptade
     
