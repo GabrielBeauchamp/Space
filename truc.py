@@ -44,8 +44,9 @@ def uptade():
     if player.missile.fired:
         player.missile.Move('p')
         screen.blit(player.missile.missile, (player.missile.xpos, player.missile.ypos))
-    
+        
     colision()
+    
     if player.alive:
         screen.blit(player.ship, (player.xpos, WIN_LARGEUR - SPRITE_SIZE))
     elif not player.alive:

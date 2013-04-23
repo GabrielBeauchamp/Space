@@ -34,7 +34,7 @@ class Missile:
     def Move(self, who):
         if who == 'p':          # Player
             self.SetYpos(self.ypos - self.speed)
-            if self.ypos == 0:
+            if self.ypos <= 0:
                 self.fired = False
         elif who == 'a':        # Alien
             self.SetYpos(self.ypos + self.speed)
