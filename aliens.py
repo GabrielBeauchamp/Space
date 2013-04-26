@@ -6,7 +6,9 @@ import os
 import getopt
 import pygame
 from pygame.locals import *
+
 from screen import *
+from missile import *
 
 class Aliens:
     
@@ -16,6 +18,7 @@ class Aliens:
         self.xpos = x
         self.ypos = y
         self.alive = True
+        self.missile = Missile('a', 2)
 
     def Move(self):
         if self.xpos < WIN_LARGEUR - SPRITE_SIZE:
@@ -29,4 +32,12 @@ class Aliens:
 
     def Die(self):
         self.alive = False
+        self.xpos = WIN_LARGEUR +1
+        self.ypos = WIN_HAUTEUR +1
 
+    def Fire(self):
+        self.missile = Missile('a', 2)
+        self.missile.SetXpos(self.xpos)
+        self.missile.SetYpos(self.ypos)
+
+        self.missile.Fire()

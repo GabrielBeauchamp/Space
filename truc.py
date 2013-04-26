@@ -5,6 +5,7 @@ import math
 import os
 import getopt
 import pygame
+import random
 from pygame.locals import *
 
 from playerShip import *
@@ -16,11 +17,13 @@ screen = pygame.display.set_mode((WIN_HAUTEUR, WIN_LARGEUR))
 
 pygame.display.set_caption('Space nain d\'vader') 
 
-player = PlayerShip(5)        # Cree un joueur, avec une vitesse de 5.
+player = PlayerShip(5)        # Cree un joueur, avec une vitesse.
 
 alienStack = [Aliens(0, 0), Aliens(SPRITE_SIZE, 0), Aliens(SPRITE_SIZE * 2, 0), Aliens(SPRITE_SIZE * 3, 0),
               Aliens(0, SPRITE_SIZE), Aliens(SPRITE_SIZE, SPRITE_SIZE), Aliens(SPRITE_SIZE *2, SPRITE_SIZE), Aliens(SPRITE_SIZE * 3, SPRITE_SIZE)] # Test
-score = 0
+# Ceci est de loin trop complique pour ce que c'est... J'arrive a peine a le maintenir maintenant. 
+score = 0                       # Je vois pas pourquoi je peux pas y acceder ailleurs.
+pause = False
 
 def colision():
 
@@ -57,7 +60,6 @@ def uptade():
         if i.alive:
             screen.blit(i.ship, (i.xpos, i.ypos))
        
-   
     pygame.display.flip()
 
 
@@ -81,7 +83,7 @@ def main():
               if not player.missile.fired:
                   player.Fire()
           if event.key == K_p:    # Pause
-              pass
+             pause = True         # Fonctionne pas, verra plus tard.
           if event.key == K_q:    # Quit
               return
       
@@ -93,6 +95,8 @@ def main():
               player.isMoving = True
               player.movDir = ''
 
+      if True:                  # Ne fonctionne pas vraiment.
+          alienStack[0].Fire()
     uptade()                    # Screen uptade
     
 

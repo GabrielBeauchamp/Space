@@ -15,7 +15,7 @@ class Missile:
     def __init__(self, who, speed):
         self.fired = False
         self.xpos = 0
-        #self.ypos = 0
+        self.ypos = 0
         
         if who == 'p':
             self.missile = pygame.image.load('data/pMissile.jpg').convert()
@@ -23,8 +23,9 @@ class Missile:
             self.ypos = WIN_LARGEUR - SPRITE_SIZE
         elif who == 'a':
             #Prend le missile alien
-            #self.missile = pygame.image.load
-            #self.speed = speed
+            self.missile = pygame.image.load('data/pMissile.jpg').convert() # Trouver un meilleur sprite.
+        
+            self.speed = speed
             pass
 
     def Fire(self):
@@ -38,7 +39,9 @@ class Missile:
                 self.fired = False
         elif who == 'a':        # Alien
             self.SetYpos(self.ypos + self.speed)
-            
+            if self.ypos >= WIN_HAUTEUR:
+                self.fired = False
+
     def GetRect(self):
         return pygame.Rect(self.xpos, self.ypos, SPRITE_SIZE, SPRITE_SIZE)
 
