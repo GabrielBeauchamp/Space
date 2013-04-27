@@ -22,11 +22,11 @@ player = PlayerShip(5)        # Cree un joueur, avec une vitesse.
 alienStack = [Aliens(0, 0), Aliens(SPRITE_SIZE, 0), Aliens(SPRITE_SIZE * 2, 0), Aliens(SPRITE_SIZE * 3, 0),
               Aliens(0, SPRITE_SIZE), Aliens(SPRITE_SIZE, SPRITE_SIZE), Aliens(SPRITE_SIZE *2, SPRITE_SIZE), Aliens(SPRITE_SIZE * 3, SPRITE_SIZE)] # Test
 # Ceci est de loin trop complique pour ce que c'est... J'arrive a peine a le maintenir maintenant. 
-score = 0                       # Je vois pas pourquoi je peux pas y acceder ailleurs.
+
+score = 0
 pause = False
 
 def colision():
-
     for i in alienStack:
         if player.missile.GetRect().colliderect(i.GetRect()):
             i.Die()
@@ -41,7 +41,7 @@ def uptade():
     # On deplace les aliens
     for i in alienStack:
         i.Move()
-
+        
     # On deplace les missilles
     if player.missile.fired:
         player.missile.Move('p')
