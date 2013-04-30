@@ -1,0 +1,12 @@
+--- Bugs ---
+Pour une raison quelconque j'ai vu des aliens disparraitre avant que le missile les touchent.
+
+
+--- Liste a faire ----
+* TODO Changer la hitbox du missile. Pour avoir quelque chose de plus realiste.
+* TODO Trouver un meilleur moyen pour declarer alienStack.
+* TODO Faire le score.
+* DONE Mettre le jeu en pause.
+* TODO Changer la taille des sprites.
+* TODO Faire tirer des missiles par les Aliens.
+* TODO Trouver un meilleur sprite pour les missiles aliens

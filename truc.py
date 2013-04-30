@@ -23,8 +23,8 @@ alienStack = [Aliens(0, 0), Aliens(SPRITE_SIZE, 0), Aliens(SPRITE_SIZE * 2, 0), 
               Aliens(0, SPRITE_SIZE), Aliens(SPRITE_SIZE, SPRITE_SIZE), Aliens(SPRITE_SIZE *2, SPRITE_SIZE), Aliens(SPRITE_SIZE * 3, SPRITE_SIZE)] # Test
 # Ceci est de loin trop complique pour ce que c'est... J'arrive a peine a le maintenir maintenant. 
 
-score = 0
-pause = False
+
+
 
 def colision():
     for i in alienStack:
@@ -64,40 +64,47 @@ def uptade():
 
 
 def main():
-  while 1:                      # Boucle infinie d'evenement.
-    screen.fill((0, 0, 0))
+    pause = False
 
-    for event in pygame.event.get(): # Prend l'input
-      if event.type == QUIT:         # Si on quitte.
-        return
-      if event.type == KEYDOWN: # Si une touche est appuye.
-          if event.key == K_RIGHT: # J'aimerais bien que j'ai pas a appuye sur gauche ou
-             # player.Move('r')     # droite a chaque fois que je veux me deplacer
-              player.isMoving = True
-              player.movDir = 'r'
-          if event.key == K_LEFT:
+    while 1:                      # Boucle infinie d'evenement.
+        screen.fill((0, 0, 0))
+        
+        for event in pygame.event.get(): # Prend l'input
+            if event.type == QUIT:         # Si on quitte.
+                return
+            if event.type == KEYDOWN: # Si une touche est appuye.
+                if event.key == K_RIGHT: # J'aimerais bien que j'ai pas a appuye sur gauche ou
+                    # player.Move('r')     # droite a chaque fois que je veux me deplacer
+                    player.isMoving = True
+                    player.movDir = 'r'
+                if event.key == K_LEFT:
               #player.Move('l')
-              player.isMoving = True
-              player.movDir = 'l'
-          if event.key == K_LCTRL:
-              if not player.missile.fired:
-                  player.Fire()
-          if event.key == K_p:    # Pause
-             pause = True         # Fonctionne pas, verra plus tard.
-          if event.key == K_q:    # Quit
-              return
+                    player.isMoving = True
+                    player.movDir = 'l'
+                if event.key == K_LCTRL:
+                    if not player.missile.fired:
+                        player.Fire()
+                if event.key == K_p:    # Pause
+                    if pause == False:
+                        pause = True      
+                    elif pause == True:
+                        pause = False
+                if event.key == K_q:    # Quit
+                    return
       
-      if event.type == KEYUP:
-          if event.key == K_RIGHT:
-              player.isMoving = False
-              player.movDir = ''
-          if event.key == K_LEFT:
-              player.isMoving = True
-              player.movDir = ''
+            if event.type == KEYUP:
+                if event.key == K_RIGHT:
+                    player.isMoving = False
+                    player.movDir = ''
+                if event.key == K_LEFT:
+                    player.isMoving = True
+                    player.movDir = ''
 
-      if True:                  # Ne fonctionne pas vraiment.
-          alienStack[0].Fire()
-    uptade()                    # Screen uptade
+      #if True:                  # Ne fonctionne pas vraiment.
+       #   alienStack[0].Fire()
+
+        if pause == False:
+            uptade()                    # Screen uptade
     
 
 if __name__ == '__main__': main()
