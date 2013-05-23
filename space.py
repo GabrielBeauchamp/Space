@@ -19,11 +19,18 @@ pygame.display.set_caption('Space nain d\'vader')
 
 player = PlayerShip(5)        # Cree un joueur, avec une vitesse.
 
-alienStack = [Aliens(0, 0), Aliens(SPRITE_SIZE, 0), Aliens(SPRITE_SIZE * 2, 0), Aliens(SPRITE_SIZE * 3, 0),
-              Aliens(0, SPRITE_SIZE), Aliens(SPRITE_SIZE, SPRITE_SIZE), Aliens(SPRITE_SIZE *2, SPRITE_SIZE), Aliens(SPRITE_SIZE * 3, SPRITE_SIZE)] # Test
-# Ceci est de loin trop complique pour ce que c'est... J'arrive a peine a le maintenir maintenant. 
 
+xOffset = 0
+yOffset = 0
+alienStack = []
+deadStack = []
 
+for i in range(2):
+    yOffset = i
+    for j in range(4):
+        xOffset = j
+        alienStack += [Aliens(SPRITE_SIZE * xOffset, SPRITE_SIZE * yOffset)]
+        
 
 
 def colision():
@@ -31,8 +38,12 @@ def colision():
         if player.missile.GetRect().colliderect(i.GetRect()):
             i.Die()
             player.missile.fired = False
+     
+def deadAlien():
+    for i in alienStack:
+        if not i.alive:
+            deadStack += i
             
-        
 def uptade():
     # On deplace le joueur
     if player.isMoving:
@@ -49,6 +60,8 @@ def uptade():
         
     # On test les colisions.
     colision()
+    deadAlien()
+    deadStack = []
     
     # On affiche les nouvelles valeur du joueur et des aliens.
     if player.alive:
@@ -59,7 +72,8 @@ def uptade():
     for i in alienStack:
         if i.alive:
             screen.blit(i.ship, (i.xpos, i.ypos))
-       
+
+    
     pygame.display.flip()
 
 
@@ -73,12 +87,10 @@ def main():
             if event.type == QUIT:         # Si on quitte.
                 return
             if event.type == KEYDOWN: # Si une touche est appuye.
-                if event.key == K_RIGHT: # J'aimerais bien que j'ai pas a appuye sur gauche ou
-                    # player.Move('r')     # droite a chaque fois que je veux me deplacer
+                if event.key == K_RIGHT:
                     player.isMoving = True
                     player.movDir = 'r'
                 if event.key == K_LEFT:
-              #player.Move('l')
                     player.isMoving = True
                     player.movDir = 'l'
                 if event.key == K_LCTRL:
@@ -104,7 +116,7 @@ def main():
        #   alienStack[0].Fire()
 
         if pause == False:
-            uptade()                    # Screen uptade
+            uptade()            # Screen uptade, si le jeu est pas en pause, bien sur.
     
 
 if __name__ == '__main__': main()

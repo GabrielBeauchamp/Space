@@ -5,6 +5,7 @@ Pour une raison quelconque j'ai vu des aliens disparraitre avant que le missile 
 --- Liste a faire ----
 * TODO Changer la hitbox du missile. Pour avoir quelque chose de plus realiste.
 * TODO Trouver un meilleur moyen pour declarer alienStack.
+  Faire une boucle qui calcule l'endroit ou chaque alien devra etre init.
 * TODO Faire le score.
 * DONE Mettre le jeu en pause.
 * TODO Changer la taille des sprites.
