@@ -60,8 +60,10 @@ def uptade():
         
     # On test les colisions.
     colision()
-    deadAlien()
-    deadStack = []
+    
+    # Ceci ne fonctionne pas.
+    #deadAlien()
+    #deadStack = []
     
     # On affiche les nouvelles valeur du joueur et des aliens.
     if player.alive:
