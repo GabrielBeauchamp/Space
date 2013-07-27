@@ -31,27 +31,29 @@ for i in range(2):
         xOffset = j
         alienStack += [Aliens(SPRITE_SIZE * xOffset, SPRITE_SIZE * yOffset)]
         
-
-
 def colision():
     for i in alienStack:
-        if player.missile.GetRect().colliderect(i.GetRect()):
-            i.Die()
-            player.missile.fired = False
-     
+        if i.alive:
+            if player.missile.GetRect().colliderect(i.GetRect()):
+                i.Die()
+                player.missile.fired = False
+                
+                
 def deadAlien():
     for i in alienStack:
         if not i.alive:
             deadStack += i
-            
-def uptade():
+            alienStack -= i
+
+def update():
     # On deplace le joueur
     if player.isMoving:
         player.Move(player.movDir)
 
     # On deplace les aliens
     for i in alienStack:
-        i.Move()
+        if i.alive:
+            i.Move()
         
     # On deplace les missilles
     if player.missile.fired:
@@ -71,6 +73,8 @@ def uptade():
     elif not player.alive:
         player.Die()
     
+
+
     for i in alienStack:
         if i.alive:
             screen.blit(i.ship, (i.xpos, i.ypos))
@@ -106,7 +110,7 @@ def main():
                 if event.key == K_q:    # Quit
                     return
       
-            if event.type == KEYUP:
+            if event.type == KEYUP: # Si la touche n'est plus appuye.
                 if event.key == K_RIGHT:
                     player.isMoving = False
                     player.movDir = ''
@@ -118,7 +122,7 @@ def main():
        #   alienStack[0].Fire()
 
         if pause == False:
-            uptade()            # Screen uptade, si le jeu est pas en pause, bien sur.
+            update()            # Screen update, si le jeu est pas en pause, bien sur.
     
 
 if __name__ == '__main__': main()
